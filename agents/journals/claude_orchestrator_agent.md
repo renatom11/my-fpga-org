@@ -2785,3 +2785,125 @@ sent-ledger line in the same commit.
 
 ### Files-in-this-commit
 - docs/federation/landed/chip8-sv/G0.screen.md
+
+## [J-orchestrator-0042] 2026-08-05T15:34Z | task:none | Landing chip8-sv/G0, steps 4-5: LC-01 transcribed as L-D16, ledger line atomic with it
+
+### Trigger
+§5.1 step 4 (transcribe accepted candidates, allocating final ids at this
+fence) and step 5 (integrate fast-forward-only, with the sent-ledger line
+in the same commit as the transcription) for landing key
+`chip8-sv` + `G0`. The reviewer accepted one candidate at
+J-orchestrator-0041.
+
+### Inputs
+- `docs/federation/landed/chip8-sv/G0.screen.md` at `5a6f53a` — the
+  reviewer's ACCEPT, its section recommendation, its NARRATIVE-ONLY
+  reasoning, and its cross-citation recommendation.
+- `docs/federation/landed/chip8-sv/G0.md` at `7f7c9e1` — `LC-01`'s text.
+- `docs/LESSONS.md` at this head — section D, last id `L-D15`; the entry
+  format exemplified by `L-D14`/`L-D15`.
+- `docs/FEDERATION.md` §4 (fence allocates final ids), §5.1 steps 4/4b/4c/5,
+  §9 (foreign provenance), §8 (Recurrence).
+- `tasks/BOARD.md` — sent-ledger and amendment-obligations ledgers.
+
+### Reasoning
+- **Id allocated against *this* head, not carried from anywhere.** §5.2
+  clause 6 makes the final id and its section assignment head-dependent
+  and re-derived per attempt, because a competing landing could have taken
+  the number. Section D's last entry at this head is `L-D15`, so the
+  allocation is **`L-D16`**. The candidate's provisional `LC-01` is
+  discarded as §4 requires - a candidate never self-assigns its final id -
+  and the mapping `LC-01 → L-D16` is what the outer-hop PR will need to
+  carry when it can be opened.
+- **Section D on the reviewer's argument, which I checked rather than
+  took.** D is CI & evidence discipline; the lesson is about a check whose
+  scope is narrower than its apparent subject and about how a green
+  aggregate is misread as coverage. B (review discipline) would have been
+  wrong - no human review failed here - and F (org topology) would have
+  buried a general verification lesson inside a topology section because
+  the *incident* happened to involve repo roles. The rule is not about
+  repo roles.
+- **I wrote the neighbours into the rule text, because the reviewer's
+  strongest finding would otherwise be lost.** Its decisive point was that
+  `L-A11` and `L-D11` were *in force and satisfied* at the incident and
+  the defect passed through both, and that `L-D10`'s remedy had nothing to
+  bite on because the OK line sat inside the guarded branch. A future
+  reader who lands on `L-D16` alone would not know that; a reader who
+  lands on `L-D10` or `L-D11` should be told these do not cover this case.
+  So the entry states the relationship explicitly and closes with a
+  compare-line. This is the cross-citation the reviewer recommended in
+  place of escalating the strictness tension.
+- **LH2-g is protected by keeping proper nouns out of the *rule*, not out
+  of the entry.** The bar applies to the rule statement read with
+  provenance hidden; the Incident and Provenance blocks legitimately carry
+  specifics, and §9 requires the incident description to stand on its own
+  without the source repo. I kept the incident fully abstracted ("a
+  repository template", "a continuous-integration check") exactly as the
+  packet wrote it, and confined every project noun, SHA and URL to
+  Provenance - which is also what the reviewer flagged must hold at
+  transcription.
+- **Step 4b opens nothing, and the reason is the reviewer's.** An entry
+  whose `Now lives in` names a protocol section, charter, playbook or
+  template opens an amendment obligation. `L-D16` is NARRATIVE-ONLY -
+  because the defective check lives in the canonical shell, so an
+  obligation recorded *here* could never be discharged here. I recorded
+  that reason in the entry itself rather than leaving "narrative only"
+  bare, so a later reader does not re-open the question.
+- **Step 4c: dispositioned and swept, both stated even though both are
+  empty.** This landing opened no obligation, so the ledger's final field
+  is `—`. The DEFERRED backlog sweep found nothing to sweep. ADR-0014's
+  point is that a landing never ends with an obligation in no state, and
+  the honest way to satisfy that on an empty backlog is to say the sweep
+  ran and found it empty - not to omit the line and leave a reader unable
+  to tell a clean sweep from a skipped one.
+- **Atomicity is real here, not aspirational.** §5.1 step 5 requires
+  "landed" and "recorded" to be one commit. The transcription and the
+  sent-ledger line are in this single commit, and that is only truthful
+  because 4c had already put every obligation this landing opened into a
+  state - of which there were none.
+- **The ledger line records the outer hop as owed, not as done.** The
+  project's sponsor answered YES, so the §7 PR is authorized; the
+  canonical shell is not in this session's authorized repository set, so
+  it cannot be opened. Writing `—` alone would read as "no outer hop
+  wanted". The line says YES and PR owed, with the reason.
+
+### Actions
+- Transcribed the accepted candidate into `docs/LESSONS.md` as **`L-D16`**
+  at the end of section D, in the established entry format (Rule /
+  Incident / Now lives in / Provenance), with the neighbour relationships
+  written into the rule and a compare-line to `L-D10`, `L-D11`, `L-A11`,
+  `L-B04`.
+- Wrote the **sent-ledger line** for landing key `chip8-sv`/`G0` on
+  `tasks/BOARD.md`, in this same commit, carrying the staging SHAs, the
+  outer-hop state, and `—` for obligations.
+- Recorded the **step 4c disposition and backlog sweep** on the
+  amendment-obligations ledger: none opened, backlog swept, backlog empty.
+
+### Evidence
+- Section D last id before this commit: `L-D15` (measured,
+  `grep -o '^### L-D[0-9]*' docs/LESSONS.md | tail -1`). Allocated:
+  `L-D16`. Mapping for the outer hop: **`LC-01` → `L-D16`**.
+- `grep -n "^### L-D16" docs/LESSONS.md` → line 707, immediately before
+  `## E. Communication & relay discipline`. *Measured.*
+- Reviewer dispositions this commit acts on: 1 accept, 0 merges, 0
+  recurrence drops, 0 escalations, 0 rejects, 1 war story, 0 packs.
+  *Relayed* (`G0.screen.md` at `5a6f53a`).
+- `docs/domains/` unchanged — no pack created, matching the reviewer's
+  finding that `WS-01` correctly declined to self-create one. *Measured.*
+
+### Outcome
+Steps 4, 4b, 4c and the ledger half of step 5 are complete in this commit.
+`LC-01` has landed as `L-D16`; `WS-01` stays a war story and enters no
+corpus. Remaining: the fast-forward integration of this staging branch
+onto the working branch, then §5.1 step 6 — recording the resulting SHAs
+in the project's harvest block, which is what lets the project declare G0
+passed.
+
+### Open-questions
+- **The outer-hop PR is owed** and blocked on repository access.
+- The `fed/**` ruleset remains unconfigured here (Stage 0 step 2), so this
+  staging branch is unprotected.
+
+### Files-in-this-commit
+- docs/LESSONS.md
+- tasks/BOARD.md

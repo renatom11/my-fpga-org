@@ -704,6 +704,48 @@ the working tree will bake uncommitted state into published pages.
 **Provenance.** [J-orch] `J-orchestrator-0127` ("the J-orchestrator-0125
 class"), `J-orchestrator-0130`.
 
+### L-D16 — An enumerated-identity check that validates one value
+**Rule.** A self-identification check that validates only one value of an
+enumerated identity gives false assurance for every other value: the
+uncovered values produce neither a pass nor a failure, and the run's
+aggregate green is read as coverage. Scope the check to every value of the
+enumeration, or state its coverage where its result is read. Neighbouring
+disciplines do not substitute for this one — a proving scenario can exist
+and pass *because* the check declined to speak (L-A11), and an instrument
+can demonstrate it is able to fail on the one value it covers (L-D11),
+while the uncovered values stay silently unverified. Where the check's own
+OK line sits inside the guarded branch, nothing is printed at all, so the
+stood-down-check remedy (L-D10) has nothing to bite on.
+**Incident.** A repository template recorded its own identity in a state
+file: a role field drawn from a fixed enumeration of four values, and a
+field naming the repository's own canonical URL. A copy inherited both
+fields from its parent and was required to rewrite them as its first act;
+a copy that had not done so was, by definition, not yet founded. A
+continuous-integration check existed for exactly this and compared the
+recorded URL against the actual remote — but it had been written when only
+one of the four role values was in play, and fired only when the role field
+held that value. A copy was later taken while the role field held one of
+the unchecked values. Its recorded URL named its parent; its actual remote
+named itself. The check ran and passed, and the whole history was green on
+a repository whose own state file asserted it was a different repository.
+The condition was found only because a human-readable bootstrap document
+told the reader to compare the two fields by hand.
+**Now lives in.** Narrative only — the defective check belongs to an
+upstream repository, so an amendment obligation opened at this fence could
+not be discharged here (screening report, `LC-01`, screen 4).
+**Provenance.** Federated landing — source org `renatom11`, project
+`chip8-sv`, parent record `G0`; landed from
+`docs/federation/landed/chip8-sv/G0.md` (`LC-01`) with screening report
+`docs/federation/landed/chip8-sv/G0.screen.md`. Source-repo citations, for
+a reader who has access: adjudicating entry `J-orchestrator-0040` at
+`fe5dea721397acef6a48bc924f89af41037f033e` of
+`github.com/renatom11/my-project`; incident state pin `0a60b2a`;
+corroborating audit `AUD-0001-F2` at `93fd657`; the green run,
+<https://github.com/renatom11/my-project/actions/runs/31012592559>.
+Corroborated independently at this fence: `scripts/check_journals.sh`
+guards its comparison on a single enumeration value. Compare L-D10, L-D11,
+L-A11, L-B04.
+
 ## E. Communication & relay discipline
 
 ### L-E01 — The verbatim relay classes

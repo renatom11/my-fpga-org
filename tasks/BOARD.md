@@ -145,8 +145,16 @@ They are never answered in this repository.
 - **Federation sent-ledger** (append-only; one line per landing:
   `<parent-record-id>` · landing SHA(s) · outer-hop PR URL or `—` ·
   obligation ids + states or `—`, ADR-0014):
-  _none yet_. A landing's ledger line is written in the same commit as
+  A landing's ledger line is written in the same commit as
   its transcription (`docs/FEDERATION.md` §5.1 step 5).
+  - `chip8-sv` · **G0** · staged `7f7c9e1` (packet, verbatim) ·
+    `5a6f53a` (screening report) · transcription = **this commit**
+    (`L-D16` into section D; SHA recorded in the project's harvest block,
+    §5.1 step 6) · outer hop: **YES from the project's sponsor, PR owed** —
+    the canonical shell is not in the landing session's authorized
+    repository set, so the §7 PR could not be opened; obligation carried,
+    not dropped · obligations opened: `—` (none — the accepted entry is
+    NARRATIVE-ONLY, §5.1 step 4c).
 - **Amendment obligations** (open promotion obligations — the recurrence
   threshold, ADR-0010 / `docs/FEDERATION.md` §8; the read-path promotion
   channel rides the same ledger): _none open_. One line per obligation:
@@ -155,6 +163,12 @@ They are never answered in this repository.
   event). Every landing dispositions its own and sweeps the DEFERRED
   backlog (`docs/FEDERATION.md` §5.1 step 4c, ADR-0014) — landings are
   this fence's only cadence.
+  - **Swept at the `chip8-sv`/`G0` landing, 2026-08-05**: this landing
+    opened **no** obligation (its one accepted entry, `L-D16`, is
+    NARRATIVE-ONLY — the defective check it concerns lives in the
+    canonical shell, so an obligation opened here would be undischargeable
+    by construction). The DEFERRED backlog was swept and is **empty**;
+    no prior obligation existed to re-state or discharge.
 - **Outer-hop standing pre-answer** (`docs/FEDERATION.md` §7): _none —
   the per-gate question stands_. The sponsor may replace this value
   with a standing YES or NO (e.g. *STANDING CLOSED — pre-answered NO,
