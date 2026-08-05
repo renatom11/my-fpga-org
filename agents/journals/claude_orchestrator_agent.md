@@ -2689,3 +2689,99 @@ packet as `G0.screen.md`.
 
 ### Files-in-this-commit
 - docs/federation/landed/chip8-sv/G0.md
+
+## [J-orchestrator-0041] 2026-08-05T15:28Z | task:none | Landing chip8-sv/G0, step 3: screening report committed - LC-01 ACCEPT, WS-01 confirmed
+
+### Trigger
+§5.1 step 3 of the landing for key `chip8-sv` + `G0`. The fresh reviewer
+agent spawned at J-orchestrator-0040 returned its verdicts; its report is
+committed here beside the packet, unaltered.
+
+### Inputs
+- The reviewer's report, now at
+  `docs/federation/landed/chip8-sv/G0.screen.md` (440 lines).
+- `docs/federation/landed/chip8-sv/G0.md` at `7f7c9e1`.
+- `docs/FEDERATION.md` §8 (the four screens, Recurrence), §9 (foreign
+  provenance), §5.1 steps 3-4.
+- `docs/LESSONS.md` sections A-F at this head.
+
+### Reasoning
+- **The reviewer was fresh, roster-less and unbriefed beyond §8, and its
+  report shows it.** It re-derived the redundancy screen from this head
+  rather than accepting the packet's framing, and it read `L-A11`,
+  `L-B04`, `L-D04`, `L-D10`, `L-D11`, `L-D12`, `L-D13` and `L-F03` in full
+  before concluding. That is the screen the procedure is actually asking
+  for, rather than a glance at titles.
+- **Its decisive redundancy argument is better than the one I would have
+  made, which is the point of not making it.** I had noticed at
+  J-orchestrator-0040 that `LC-01` sits near section D and said explicitly
+  that the question was not mine. The reviewer's finding: **two
+  neighbouring lessons were in force and satisfied at the incident, and
+  the defect passed through both** - `L-D11` (the instrument proved it can
+  fail, for the one covered value) and `L-A11` (the proving scenarios
+  exist and pass, one of them green precisely *because* the guard skips
+  that role). And `L-D10`'s remedy would not have caught it either: the
+  `OK:` echo sits inside the guarded block, so nothing printed at all -
+  the false assurance came from the run's aggregate green, not from an OK
+  line over a stood-down check. A lesson that survives its nearest
+  neighbours being satisfied is not redundant with them.
+- **It also recorded a tension against the candidate rather than
+  smoothing it.** `LC-01`'s second disjunct ("or state its coverage at the
+  point where its result is read") is weaker than `L-D10`'s standard that
+  the harness refuse to print OK over a stood-down check. The reviewer
+  judged them compatible - different burden-holders, same substance - and
+  recommended cross-citation rather than escalation. I accept that: §8
+  reserves escalation for contradictions, and a difference in strictness
+  between two compatible rules is not a contradiction.
+- **The near-miss it found argues for landing, not against.** This
+  repository's own board already carries the generalized rule as queued
+  law-debt, with the reasoning at `J-orchestrator-0032`. A board bullet is
+  not a corpus entry, so it creates no redundancy - and the reviewer
+  names it as exactly `L-F01`'s pathology (the protocol froze while the
+  rules kept accreting elsewhere). The lesson existing as an untranscribed
+  note is the argument for transcribing it.
+- **NARRATIVE-ONLY, for the reviewer's reason rather than the packet's.**
+  The packet said "narrative only at the source". The reviewer gave a
+  structural reason the packet did not: an amendment obligation opened
+  *here* could not be discharged by a fix in the canonical shell, which
+  owns the defective check - it would be undischargeable by construction.
+  That is the right reason and it is why step 4b opens no obligation for
+  this landing, and why step 4c's ledger field will read `—`.
+- **I commit the report unaltered even where it criticises the packet I
+  staged.** The screening report is the fence's evidence that screening
+  happened and what it concluded; editing it would make it evidence of
+  nothing.
+
+### Actions
+- Committed the reviewer's report verbatim at
+  `docs/federation/landed/chip8-sv/G0.screen.md`.
+- No transcription yet: `docs/LESSONS.md` is untouched at this commit.
+
+### Evidence
+- Reviewer dispositions, relayed: **`LC-01` — ACCEPT (land)**, recommended
+  section **D. CI & evidence discipline**; all four screens PASS.
+  **`WS-01` — war story confirmed, LH1 the correct failed criterion**
+  (the reviewer checked LH2-d, LH3, teach and leak would each have passed,
+  to confirm LH1 was not a convenient choice). Totals: 1 accept, 0 merges,
+  0 recurrence drops, 0 escalations, 0 rejects, 1 war story, 0 packs
+  created. *Relayed.*
+- The reviewer corroborated the incident independently at this fence:
+  `scripts/check_journals.sh:322` reads
+  `if [ "$ROLE_VALUE" = "canonical-shell" ]`, matching the packet's audit
+  citation, and `0a60b2a` is the parent of the staging commit here.
+  I re-ran the grep to confirm: *measured*.
+- `git diff --numstat` for this commit: one new file (the report) plus the
+  journal append. `docs/LESSONS.md` unchanged. *Measured.*
+
+### Outcome
+Step 3 complete. One candidate accepted for transcription into section D;
+no pack created; no amendment obligation owed. Next: §5.1 step 4 —
+transcribe `LC-01` into `docs/LESSONS.md` with a final id allocated
+against *this* head, then step 5's fast-forward integration carrying the
+sent-ledger line in the same commit.
+
+### Open-questions
+- The `fed/**` ruleset remains unconfigured here (Stage 0 step 2).
+
+### Files-in-this-commit
+- docs/federation/landed/chip8-sv/G0.screen.md
