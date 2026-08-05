@@ -2378,3 +2378,133 @@ awaiting either the freeze's end or sponsor direction.
 
 ### Files-in-this-commit
 - tasks/BOARD.md
+
+---
+## [J-orchestrator-0038] 2026-08-05T14:20:00Z | task:none | C38 - founding: this copy is renatom11's org generic (BOOTSTRAP Stage 0)
+
+### Trigger
+A fresh session booted in this repository and ran CLAUDE.md's
+first-session check: the board's This-repository line claimed
+https://github.com/renatom11/generic-agentic-fpga-org while
+`git remote get-url origin` reported
+https://github.com/renatom11/my-fpga-org. The lines disagree, so this
+is a fresh, unfounded copy of whatever the role line claims - and the
+role line claimed `canonical-shell`. Per ADR-0011 that resolves to
+exactly one boot path: found an org generic (BOOTSTRAP Stage 0), or
+`solo-collapsed` only if the sponsor supplies project material at
+founding. The sponsor was asked the one intake question the boot path
+permits and answered **org generic**.
+
+### Inputs
+- `tasks/BOARD.md` at C37 (b5f94aa) - the pre-founding board, carrying
+  the shell's identity lines and its M0/G0 template state.
+- `CLAUDE.md`, First session - the fresh-copy detection rule and the
+  role-determined boot tree.
+- `BOOTSTRAP.md` Stage 0 steps 1-7, the org-generic founding checklist.
+- ADR-0011 (repo-role discriminator; the org-generic boot behavior and
+  founding checklist), ADR-0015 + Amendment A1 (R-ROLE-1).
+- `docs/FEDERATION.md` §0 (the three levels; what an org generic is and
+  is not), §5.1 (the inner hop this repo receives), §7 (the outer hop
+  and the standing pre-answer).
+- Verification run by this session's own hands at C37: `bash
+  scripts/test_protocol.sh`; `bash scripts/check_journals.sh --all`;
+  the `journal-check` run on origin/main (id 31011373195).
+- Sponsor decisions this session, both recorded above: role =
+  org-generic; explicit permission to land this founding commit
+  directly on the default branch.
+
+### Reasoning
+- **Which copy this is.** Detection is the board line against origin,
+  and the role line names the *parent*, not this repo. Parent =
+  canonical-shell, so this is a first-generation copy: an org generic
+  (or solo-collapsed). Nothing else in the tree needed consulting -
+  the tree answered the question, as designed.
+- **Org generic, not solo-collapsed.** The distinction is decided by
+  whether project material exists at founding. None was supplied and
+  the sponsor chose the two-level topology, so the project slot stays
+  empty here. That makes every M0/G0/E0 row on this board template
+  state rather than open work - carried, not run - and it makes this
+  session's job finite: Stage 0, then stop.
+- **The branch.** Stage 0 step 4 mandates the founding commit lands on
+  the default branch directly; the third field defect (C36) is exactly
+  what happens otherwise - a founding parked on a side branch leaves
+  `main` claiming the shell's identity, and every child cloned
+  meanwhile mis-founds. This session's harness instructions named a
+  working branch, which would have reproduced that defect precisely,
+  so the conflict was put to the sponsor rather than resolved
+  unilaterally; permission to land on `main` was given explicitly.
+  Note that the shell's queued MACHINE guard for this trap is still
+  queued (it is the shell's law-debt, not ours) - the branch mandate
+  remains **PROSE** at this founding, honored by judgement plus a
+  sponsor decision, not refused by a script.
+- **The red build was the signal, not a fault.** R-ROLE-1 fired on
+  origin/main for the designed reason and was the sole CI failure;
+  the self-test was 47/47 and the full-history journal chain green.
+  Recording the role in this commit is what clears it. Reporting the
+  red as a defect would have been wrong - it is the wedge working.
+- **Freeze re-scope (step 5).** The inherited freeze bullet ended on
+  events in the shell's history that this copy cannot observe, so as
+  written it bound nothing. Rewritten to this repository's own
+  observable end condition - its first lessons landing - with the
+  inherited shell history explicitly demoted to context. The same
+  demotion was needed for the trial-defect and audit bullets, which
+  read as local history but are the shell's; one bullet now says so.
+- **What was deliberately not done.** No intake, no phase table, no
+  agent spawn, no domain-pack declaration: an org generic answers no
+  intake, and PROTOCOL §1 forbids the project slot being filled
+  anywhere but a project's G0. The pack inventory was recorded as an
+  inventory, not a declaration.
+
+### Actions
+Recorded the founding on `tasks/BOARD.md`, in this one commit on the
+default branch:
+- **Step 4** - This-repository line re-recorded to
+  https://github.com/renatom11/my-fpga-org; Repo role line set to
+  `org-generic` with its boot consequence stated.
+- Current-milestone section rewritten from "M0 - bring-up" to the
+  founded org-generic statement, carrying the founding provenance
+  (canonical shell at b5f94aa), the verification figures, and a
+  seven-row Stage 0 status table.
+- Milestone roadmap, G0 gate row, and the three G0 escalation rows
+  re-labelled **template state** (ADR-0011); the one live escalation
+  is the Stage 0 ruleset, class E0.
+- **Step 5** - freeze bullet re-scoped to this repository's observable
+  end condition, with the override mechanism preserved.
+- **Step 6** - defect-channel bullet confirmed against the federation
+  upstream and marked seeded; local defect log opened empty.
+- Federation-upstream line confirmed as the canonical shell (correct
+  for an org generic); project-slug and fork-point-baseline lines
+  marked n/a with the project-fork instruction each carries; declared
+  domain packs marked n/a with the carried inventory recorded;
+  outer-hop pre-answer confirmed unset.
+- Added the inherited-history bullet separating the shell's operating
+  record from this repository's.
+
+### Evidence
+`bash scripts/test_protocol.sh`: 47 passed, 0 failed, at C37 and
+re-run at this tree. `bash scripts/check_journals.sh --all` at C37:
+journal volume chains verified at range head (R10), all commits
+green, with the single expected failure `PROTOCOL VIOLATION: board
+claims Repo role canonical-shell but origin (renatom11/my-fpga-org)
+disagrees with the federation upstream ... (R-ROLE-1)`. CI run
+31011373195 on origin/main failed on that same R-ROLE-1 line and
+nothing else. This commit is the role-recording commit that clears
+it; the post-push run is the confirmation.
+
+### Outcome
+`renatom11/my-fpga-org` is founded as this organization's org
+generic. Six of Stage 0's seven steps are done; step 2 (the
+`protect-history` ruleset on `main` and `fed/**`) is sponsor-only and
+open, and step 7 - green on the default branch - is blocked on it.
+**Nothing may be forked from this repository until step 7 holds.**
+This session's founding work ends here: an org generic runs no
+project, so there is no next milestone to open, no agent to spawn,
+and no intake to take.
+
+### Open-questions
+- Sponsor's, and the only thing outstanding: configure the
+  `protect-history` ruleset (step 2), then the first project fork can
+  be taken from here.
+
+### Files-in-this-commit
+- tasks/BOARD.md

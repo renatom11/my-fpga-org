@@ -7,39 +7,61 @@ agents with open work.
 
 ## Current milestone
 
-**M0 — bring-up.** This shell was seeded from the agentic-fpga program
-(reference: https://github.com/renatom11/agentic-fpga, source pin
-1799e10a37f19059ac3337982af4b6d035e14d0c) by that program's orchestrator
-session; **seeding is COMPLETE at C9** and the operating orchestrator session
-takes over here. Working branch: `main`.
+**FOUNDED — org generic.** This repository is `renatom11`'s org generic:
+its own copy of the canonical shell, cloned once at the organization's
+founding. **It runs no project and answers no intake** (ADR-0011,
+`docs/FEDERATION.md` §0). Its standing duties are two: to be the template
+this organization's projects are forked from, and to receive those
+projects' lessons landings (`docs/FEDERATION.md` §5.1). Default branch:
+`main`.
 
-Seeding verification, recorded at C9: enforcement self-test 38/38 in a fresh
-clone; `check_journals.sh --all` green over the full seed history (R10 chain
-verified); journal-check CI green on every push; toolchain-term sweep clean;
-the only SEALED-named file is the mechanics template; zero broken relative
-links; all 35 provenance permalinks into the source program return HTTP 200;
-the bootstrap dry-run (a toy project walked through Stage 1+2) passed.
+Founded 2026-08-05 from the canonical shell at
+`b5f94aacc8a06bb519685371d355044ef5347beb` (C37), by the founding
+orchestrator session, per BOOTSTRAP Stage 0. Sponsor decision on the
+record: **org generic**, not solo-collapsed — the project slot stays
+empty here and is filled in each project fork.
 
-**Open for the operating orchestrator, in order** (details:
-`docs/gates/G0-checklist.md`): sponsor charter critique (A6); sponsor branch
-protection + branch-flow decision (A7/A8); project intake (B1-B6
-→ README phase table + this board); the G0 Section C lessons-harvest
-block; the auditor retro-audit of the seed commit
-range as the org's first spawn (A9); then Stage 2 (toolchain ADR via E3,
-build-CI template activation).
+Founding verification, by the founding session's own hands at C37:
+enforcement self-test **47 passed, 0 failed** (41 scenarios);
+`check_journals.sh --all` green over the full history with the journal
+volume chain verified at range head (R10); the sole `journal-check` CI
+failure the **R-ROLE-1** unrecorded-fork wedge, which this founding
+commit clears by recording the role.
+
+**Stage 0 status** (BOOTSTRAP Stage 0, the org-generic founding checklist):
+
+| Step | Item | State |
+|---|---|---|
+| 1 | Actions enabled; `journal-check` runs | **Done** — runs observed on `main` |
+| 2 | `protect-history` ruleset on `main` **and `fed/**`** | **OPEN — sponsor** (E0) |
+| 3 | Self-test + full-history check green by the founder's hands | **Done** — see above |
+| 4 | Role + This-repository lines recorded, on the default branch | **Done** — this commit |
+| 5 | Freeze re-scoped to this repository's own end condition | **Done** — this commit |
+| 6 | Defect channel seeded (upstream issues; local log empty) | **Done** — this commit |
+| 7 | Stop: green on the default branch before anything forks from here | **Blocked on step 2** |
+
+**Nothing may be forked from this repository until step 7 holds** — the
+default branch carries this founding commit and its CI is green. A copy
+taken from a red or pre-founding default branch mis-founds as a copy of
+the shell (the third field defect, recorded below).
 
 ## Milestone roadmap
 
+An org generic has no project milestones — the M0/M1+ roadmap, the G0
+gate, and the E0 escalation rows below are **shipped template state**
+(ADR-0011): they activate in the project forks taken from this
+repository, never here. They are carried, not run.
+
 | Milestone | Scope | Status |
 |---|---|---|
-| M0 | Bring-up: G0 intake, org ratification, branch protection, enforcement self-test green | **In progress** |
-| M1+ | Set at G0 intake — recorded here and in README.md's phase table | Pending |
+| M0 | Bring-up: G0 intake, org ratification, branch protection, enforcement self-test green | Template state — activates in a project fork |
+| M1+ | Set at G0 intake — recorded here and in README.md's phase table | Template state — activates in a project fork |
 
 ## Gates
 
 | Gate | Status | Checklist |
 |---|---|---|
-| G0 | **OPEN** | [docs/gates/G0-checklist.md](../docs/gates/G0-checklist.md) |
+| G0 | Template state — activates in a project fork | [docs/gates/G0-checklist.md](../docs/gates/G0-checklist.md) |
 
 ## Open work orders
 
@@ -47,9 +69,19 @@ _None._
 
 ## Pending escalations to sponsor
 
-All three are class **E0 — founding** (PROTOCOL §8, ADR-0013): they exist
-only at G0, and under `Repo role: canonical-shell` they are shipped
-template state (ADR-0011).
+**Live here — one, class E0 (founding)**: the Stage 0 ruleset (step 2
+above). It is the last open item of this repository's own founding.
+
+- **Rulesets** — the sponsor configures `protect-history` (Active, empty
+  bypass list, Restrict deletions + Block force pushes) targeting `main`
+  **and `fed/**`**, the federation staging namespace
+  (`docs/FEDERATION.md` §5.2 clause 10). Without it PROTOCOL §5 R9 is
+  convention only, and Stage 0 step 7 cannot close.
+
+**Template state — the three G0 rows** (PROTOCOL §8, ADR-0013): E0 exists
+only at a project's G0, and in an org generic these are shipped template
+state that activates in the project forks taken from here (ADR-0011).
+They are never answered in this repository.
 
 - **G0 ratification** — the sponsor ratifies the org: this protocol, the
   roster, the charters (or amends them before ratifying).
@@ -63,33 +95,41 @@ template state (ADR-0011).
 ## Decisions on record
 
 - **This repository**:
-  https://github.com/renatom11/generic-agentic-fpga-org — the copy's own
+  https://github.com/renatom11/my-fpga-org — the copy's own
   URL, re-recorded at every founding (BOOTSTRAP Stage 0 step 4 / G0 row
   B6). A session whose `git remote get-url origin` disagrees with this
   line is in a **fresh, unfounded copy** of whatever the role line below
   claims (`CLAUDE.md`, First session).
-- **Repo role**: `canonical-shell` (values: canonical-shell / org-generic /
-  project / solo-collapsed — ADR-0011). Set at founding; **a fork's first
-  act is updating this line**. The canonical shell runs no program: the
-  M0/G0 rows on this board are shipped template state that activates in a
-  project fork, and a session booting here operates in maintainer mode
-  (`CLAUDE.md`).
+- **Repo role**: `org-generic` (values: canonical-shell / org-generic /
+  project / solo-collapsed — ADR-0011). Recorded at this repository's
+  founding, 2026-08-05, discharging the rule that **a fork's first act is
+  updating this line**. An org generic runs no program: it runs BOOTSTRAP
+  Stage 0 once and then waits to be forked from, answering no intake
+  (`CLAUDE.md`, `docs/FEDERATION.md` §0). The M0/G0 rows above are shipped
+  template state that activates in the project forks taken from here.
 - Constitution ADR-0001..0007 pre-adopted at seeding (see each ADR's
   provenance).
-- **Declared domain packs**: _none — set at G0 intake_ (recorded here in
-  the same commit as the intake rows; a later orchestrator session
-  rehydrates its loaded packs from this line).
+- **Declared domain packs**: _n/a — template state; this repository runs
+  no intake_. A project forked from here declares and loads its packs at
+  its own G0, from the inventory this org generic carries, and records
+  them on its own board. **Pack inventory carried here** (the library
+  projects inherit, and the destination tier-2 landings accumulate into):
+  `docs/domains/ethernet-networking.md`.
 - **Federation upstream** (`docs/FEDERATION.md` §0, §7):
-  https://github.com/renatom11/generic-agentic-fpga-org — seeded. An
-  **org generic** (or a solo-collapsed copy) keeps this line as the
-  canonical shell; a **project** re-records it at G0 — checklist row
-  B6 — to point at its own org generic. Set at founding, while the
-  relationship is still known.
-- **Project slug**: _set at G0 B6_ — lowercase-hyphenated, unique within
-  the org; keys every federation landing (`docs/FEDERATION.md` §5.1).
-- **Fork-point harvest baseline**: _set at G0 B6_ (ADR-0010) — last
-  inherited entry id per journal chain; the first harvest tiles from
-  baseline + 1.
+  https://github.com/renatom11/generic-agentic-fpga-org — the canonical
+  shell. **Confirmed at this repository's founding, 2026-08-05**: an
+  **org generic** keeps this line as the canonical shell (a **project**
+  re-records it at its G0 row B6 to point at *this* repository). This is
+  the destination of this org's outer hop (§7) and the address of its
+  shell-defect channel (below).
+- **Project slug**: _n/a — template state_. An org generic has no slug of
+  its own; each project fork sets its own at G0 B6, lowercase-hyphenated
+  and unique within this org, keying its landings here
+  (`docs/FEDERATION.md` §5.1).
+- **Fork-point harvest baseline**: _n/a — template state_ (ADR-0010).
+  Each project fork records its own baseline at G0 B6 — the last entry id
+  per journal chain it inherited from this repository at fork time; its
+  first harvest tiles from baseline + 1.
 - **Federation sent-ledger** (append-only; one line per landing:
   `<parent-record-id>` · landing SHA(s) · outer-hop PR URL or `—` ·
   obligation ids + states or `—`, ADR-0014):
@@ -109,26 +149,26 @@ template state (ADR-0011).
   for every gate and every backlog*); while a standing line is recorded
   here the gate-time question is not asked, the harvest block cites
   this line instead, and only the sponsor changes it. Confirmed at
-  every founding (G0 row B6).
-- **Feature freeze (J-orchestrator-0016): RE-ENGAGED.** The
-  sponsor-directed federation-hardening round (ADR-0008..0013,
-  2026-08-04) ran under a scoped override and closed at C26 — its end
-  condition (ADR-0008). No new law lands until the first harvest
-  transits; the deletion-only simplification pass stays queued behind
-  that transit. **Override #2 (sponsor-delegated, 2026-08-04): CLOSED** —
-  the first-trial absorption round (ADR-0014, ADR-0015, the SD-0004 doc
-  fix) ran under a scoped override on the ADR-0008 pattern and closed at
-  its final commit, re-engaging the freeze there.
-  **Override #3 (sponsor-directed, 2026-08-05): CLOSED** — the
-  audit-correction round (ADR-0016 and its Amendment A1) ran under a
-  scoped override on the same pattern; its end condition, extended by
-  Amendment A1 from ADR-0016's landing commit to the completion-sweep
-  commit that propagated the standing pre-answer tree-wide, closed at
-  that sweep commit, re-engaging the freeze there.
-  **In a fork this line is re-scoped at founding**
-  (BOOTSTRAP Stage 0 step 5, or B6 for a solo-collapsed copy) to: *no
-  new law until this repository's first lessons landing completes* — the
-  shell-history wording above never binds a fork as written.
+  every founding (G0 row B6). **Confirmed unset at this repository's
+  founding, 2026-08-05** — the sponsor was not asked to pre-answer, so
+  the per-gate default-yes question stands for this org's outer hop.
+- **Feature freeze: ENGAGED — re-scoped at this repository's founding**
+  (BOOTSTRAP Stage 0 step 5, 2026-08-05). The end condition, stated as an
+  event **this repository can observe**: *no new law lands in
+  `renatom11/my-fpga-org` until its first lessons landing completes*
+  (`docs/FEDERATION.md` §5.1) — that is, until a project forked from here
+  lands its first harvest in this org generic. New law means protocol,
+  charter, or ADR changes and enforcement-script changes; it does not mean
+  the founding record itself, nor the routine landing transcriptions the
+  §5.1 pipeline requires. Until then this repository is operated, not
+  developed. The sponsor may lift or scope-override the freeze at any
+  time, on the ADR-0008 pattern (a named round with a written end
+  condition, which re-engages the freeze when it closes).
+  The canonical shell's own freeze history — the three closed
+  sponsor-directed overrides carrying ADR-0008..0016 — is inherited law
+  in this tree and is **not** this repository's freeze; its end
+  conditions reference events this copy cannot observe and never bound it
+  as written.
 - **First-trial findings absorbed** (2026-08-04, sponsor hand-relay from
   the first org generic founded from this shell, since retired): SD-0001
   → R-ROLE-1 wedge check (ADR-0015); SD-0002 (unobservable freeze) and
@@ -192,8 +232,21 @@ template state (ADR-0011).
   the pipeline's designated first test**; commits are trailer-attributed,
   not cryptographically signed; enforcement claims are tagged MACHINE or
   PROSE (`CLAUDE.md` iron rule).
-- **Upstream defect channel**: shell defects — wrong claims, broken
-  steps, gaps found while operating this copy — file as **GitHub issues
-  on the federation upstream** (line above); they never travel through
-  the lessons pipeline. Local defect log (one line per defect: date ·
-  one-line summary · upstream issue URL): _none yet_.
+- **Inherited shell history vs. this repository's history.** The four
+  bullets above — the first/second/third-trial defects, the queued
+  law-debt, and the independent claims audit — are the **canonical
+  shell's** operating record, carried into this tree at the fork. They
+  are inherited context, not events in `renatom11/my-fpga-org`, and the
+  queued law-debt is the shell's to discharge (it reaches this
+  repository only on a future re-fork or landing, never by local
+  patching while the freeze holds). This repository's own history begins
+  at its founding commit.
+- **Upstream defect channel — seeded at founding** (BOOTSTRAP Stage 0
+  step 6, 2026-08-05): shell defects — wrong claims, broken steps, gaps
+  found while operating this copy — file as **GitHub issues on the
+  federation upstream**, https://github.com/renatom11/generic-agentic-fpga-org
+  (the line above); they never travel through the lessons pipeline, which
+  carries lessons only. Never patch shell law locally while the freeze
+  holds. Local defect log (one line per defect: date · one-line summary ·
+  upstream issue URL): _empty — no defect found in this repository's
+  founding_.
