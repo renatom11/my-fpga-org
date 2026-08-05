@@ -2508,3 +2508,79 @@ and no intake to take.
 
 ### Files-in-this-commit
 - tasks/BOARD.md
+
+---
+## [J-orchestrator-0039] 2026-08-05T14:35:00Z | task:none | C39 - Stage 0 step 7: the fork gate confirmed against the post-founding CI result
+
+### Trigger
+C38's Stage 0 status table recorded step 7 as "Blocked on step 2" -
+written before the founding commit was pushed, when the post-push CI
+result was not yet knowable. The run has since concluded and the row
+is now doubly wrong: the build is green, and step 7's stated condition
+never referenced step 2 in the first place. The board is the live
+state file a rehydrating session reads first; a stale gate row on it
+is the most expensive kind of error this shell has.
+
+### Inputs
+- `journal-check` run 31012115963, `main` at `a0572ca` - conclusion
+  **success**, the first green build in this repository's history.
+- BOOTSTRAP Stage 0 step 7 as written: "Stage 0 is complete only when
+  the default branch carries the founding commit and its CI is green;
+  until then nothing may be forked from this repo."
+- Step 2 (the `protect-history` ruleset on `main` and `fed/**`), still
+  open, sponsor-only.
+- PROTOCOL §5 R9; `docs/FEDERATION.md` §5.2 clause 10 (`fed/**`).
+
+### Reasoning
+- **Read the step as written, not as remembered.** Step 7's condition
+  is founding-commit-on-default-branch AND CI green. Both now hold, so
+  the fork gate is open on its own terms. My C38 row asserted a
+  dependency the checklist does not state; correcting it is a
+  correction of fact, not a relaxation of law.
+- **But the two steps guard different things, and collapsing them
+  would be dishonest in the other direction.** Step 7 protects
+  *children*: it is about what a copy taken from here would inherit,
+  and the third field defect is precisely a child inheriting a
+  pre-founding board. Step 2 protects *this* repository: without the
+  ruleset, R9 is convention only and `fed/**` - the namespace that
+  will receive every landing - is unprotected. Marking Stage 0
+  "complete" because the fork gate opened would launder an open
+  enforcement hole into a green checkmark. Both statements go on the
+  board, side by side, with the distinction spelled out.
+- **MACHINE vs PROSE at this exact seam.** The R-ROLE-1 clearance is
+  MACHINE - a named check in CI now passes on the default branch. The
+  fork gate itself is PROSE: nothing refuses a clone of a red repo,
+  and nothing will. Saying "the hazard is retired here" is true only
+  of this repository's own state, and the sentence is written to claim
+  no more than that.
+- **Freeze-legality.** Board state, not law: no protocol, charter,
+  ADR, or script changed. The re-scoped freeze bars new law, not the
+  maintenance of the live state file.
+
+### Actions
+Corrected the Stage 0 status table on `tasks/BOARD.md`: step 1 and
+step 7 rows now cite the concrete run id and its conclusion; steps 4-6
+cite C38 rather than "this commit". Replaced the fork-gate paragraph
+with two: the gate's condition and the evidence for it, then an
+explicit statement that Stage 0 remains incomplete while step 2 is
+open, naming what is unprotected in the meantime and leaving the
+fork-before-protection decision to the sponsor as a knowing risk.
+
+### Evidence
+`bash scripts/test_protocol.sh`: 47 passed, 0 failed. `bash
+scripts/check_journals.sh --all`: green over all commits, R10 chains
+verified at range head. CI run 31012115963 on `main` at `a0572ca`:
+conclusion success (the R-ROLE-1 violation present in run 31011373195
+at `b5f94aa` no longer appears).
+
+### Outcome
+The board tells the truth about both fences: this repository is safe
+to fork from, and it is not yet protected. The only open Stage 0 item
+is the sponsor's ruleset.
+
+### Open-questions
+- Unchanged from C38: the `protect-history` ruleset (step 2) is the
+  sponsor's, and the last item of this repository's founding.
+
+### Files-in-this-commit
+- tasks/BOARD.md

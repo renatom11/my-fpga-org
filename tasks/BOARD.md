@@ -32,18 +32,30 @@ commit clears by recording the role.
 
 | Step | Item | State |
 |---|---|---|
-| 1 | Actions enabled; `journal-check` runs | **Done** — runs observed on `main` |
+| 1 | Actions enabled; `journal-check` runs | **Done** — run 31012115963 on `main` |
 | 2 | `protect-history` ruleset on `main` **and `fed/**`** | **OPEN — sponsor** (E0) |
 | 3 | Self-test + full-history check green by the founder's hands | **Done** — see above |
-| 4 | Role + This-repository lines recorded, on the default branch | **Done** — this commit |
-| 5 | Freeze re-scoped to this repository's own end condition | **Done** — this commit |
-| 6 | Defect channel seeded (upstream issues; local log empty) | **Done** — this commit |
-| 7 | Stop: green on the default branch before anything forks from here | **Blocked on step 2** |
+| 4 | Role + This-repository lines recorded, on the default branch | **Done** — C38 |
+| 5 | Freeze re-scoped to this repository's own end condition | **Done** — C38 |
+| 6 | Defect channel seeded (upstream issues; local log empty) | **Done** — C38 |
+| 7 | Stop: green on the default branch before anything forks from here | **Condition met** — see below |
 
-**Nothing may be forked from this repository until step 7 holds** — the
-default branch carries this founding commit and its CI is green. A copy
-taken from a red or pre-founding default branch mis-founds as a copy of
-the shell (the third field defect, recorded below).
+**The fork gate (step 7) is open.** Its stated condition holds as of C38:
+the default branch carries the founding commit, and `journal-check` run
+31012115963 on `main` at `a0572ca` concluded **success** — the R-ROLE-1
+red that marked this copy unfounded is cleared. A copy taken from a red
+or pre-founding default branch mis-founds as a copy of the shell (the
+third field defect, recorded below); that hazard is now retired here.
+
+**Stage 0 is nonetheless incomplete while step 2 is open**, and the two
+must not be conflated. Step 7's condition is about what a *child* would
+inherit; step 2 is about what protects *this* repository. Until the
+ruleset is configured, PROTOCOL §5 R9 (no force push, no deletion) is
+**convention only** here — enforced by nothing — and the `fed/**`
+staging namespace that receives landings is unprotected
+(`docs/FEDERATION.md` §5.2 clause 10). Forking before step 2 closes is
+permitted by the letter of step 7 and is still the sponsor's risk to
+take knowingly.
 
 ## Milestone roadmap
 
