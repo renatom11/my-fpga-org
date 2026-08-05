@@ -2584,3 +2584,108 @@ is the sponsor's ruleset.
 
 ### Files-in-this-commit
 - tasks/BOARD.md
+
+## [J-orchestrator-0040] 2026-08-05T15:20Z | task:none | Landing chip8-sv/G0, step 2: the export packet staged at the org fence
+
+### Trigger
+The project `chip8-sv` (https://github.com/renatom11/my-project) passed
+its G0 gate rows and its sponsor signed the gate with an outer-hop **YES**.
+`docs/FEDERATION.md` §5 makes the inner hop mandatory and automatic once
+that signature exists: the project's export packet lands here. I am the
+same session acting as **this repository's** orchestrator under §5.1's
+identity rule — the role is per-repository, so this entry belongs to this
+repo's chain and commits under this repo's `Agent: orchestrator`.
+
+**Landing key**: `chip8-sv` + `G0`. **This is this organization's first
+landing**, and the federation pipeline's first end-to-end execution
+anywhere — the board's own standing finding records that the pipeline has
+**zero mechanical test coverage** and that the first landing is its
+designated first test.
+
+### Inputs
+- `docs/FEDERATION.md` §4 (id allocation), §5 (harvest law), §5.1 (the
+  org-fence procedure, steps 0-6), §5.2 (concurrency law), §6 (packet
+  shape), §8 (the four screens).
+- This repository at `0a60b2a` (fresh clone, §5.1 step 1).
+- `tasks/BOARD.md` — sent-ledger, amendment-obligations ledger, repo role.
+- `docs/LESSONS.md` — section structure A-F, last id per section.
+- The project's export packet, `docs/federation/outbox/G0.md` at
+  `c6694f5` of `renatom11/my-project`.
+
+### Reasoning
+- **Step 0 first, and it came back clean.** §5.1 makes the ledger check
+  the first act, before any staging, because a lost acknowledgment on a
+  previous attempt would otherwise produce a double landing. Checked
+  three ways: `docs/federation/landed/` does not exist; the board's
+  sent-ledger reads "_none yet_"; a tree-wide grep for `chip8-sv` returns
+  nothing. No prior attempt. This is attempt **1**, and the staging
+  branch is named `fed/chip8-sv/G0/1` accordingly - attempt numbers never
+  reuse (§5.2 clause 10).
+- **Verbatim means verbatim.** §5.1 step 2 says commit the export packet
+  *verbatim*. I copied the file and confirmed byte-identity with `diff -q`
+  rather than retyping or reformatting it. The packet is the contributing
+  project's artifact; the fence's job is to screen it, not to improve it.
+- **I am deliberately not pre-judging the candidate.** `LC-01` argues a
+  rule about narrowly-scoped verification, and reading section D of this
+  repository's `docs/LESSONS.md` I can see entries in adjacent
+  territory - D10 on a check that stood down, D11 on an instrument that
+  must prove it can still fail, D12 on a report not being a check, and
+  B04 on proving a check against its target. Whether `LC-01` is
+  redundant against any of those, or complements them, is **screen 4's
+  question and not mine**. §5.1 step 3 requires a *fresh reviewer agent*
+  precisely so the session that stages a candidate is not the one that
+  judges it. I record what I noticed so the reviewer's independence can
+  be checked against it, and I pass no opinion forward.
+- **Why the staging branch exists at all.** Nothing touches
+  `docs/LESSONS.md` until screening has run (§8 item 1). Staging first
+  means a rejected candidate leaves an auditable branch and no trace in
+  the corpus, and it means the fast-forward integration in step 5 is a
+  single reviewable unit.
+- **A protection gap at this fence, stated rather than assumed away.**
+  §5.2 clause 10 requires this repository's ruleset to cover `fed/**` so
+  a lost attempt cannot be clobbered into looking like a won one. This
+  repository's Stage 0 step 2 is **still open** - no ruleset exists here
+  at all, on `main` or on `fed/**`. So for this landing the staging
+  namespace is unprotected and R9 is convention only in *this* repo. That
+  does not block the landing (nothing is racing: this is the org's only
+  project and its first landing), but it is a real weakening of the
+  procedure's assumptions and it belongs in the record, not in a footnote
+  after the fact.
+
+### Actions
+- Fresh clone of this repository at `0a60b2a` (§5.1 step 1).
+- Ran the step 0 ledger check: no `docs/federation/landed/`, sent-ledger
+  empty, no `chip8-sv` anywhere in the tree.
+- Created staging branch `fed/chip8-sv/G0/1`.
+- Copied the project's export packet verbatim to
+  `docs/federation/landed/chip8-sv/G0.md` and verified byte-identity.
+
+### Evidence
+- `ls docs/federation/landed` → `No such file or directory` (pre-staging).
+  *Measured.*
+- `grep -rn "chip8-sv" . --exclude-dir=.git` → no output (pre-staging).
+  *Measured.*
+- `tasks/BOARD.md:145-149` sent-ledger: "_none yet_";
+  `:150-156` amendment obligations: "_none open_". *Measured.*
+- `diff -q <project outbox>/G0.md docs/federation/landed/chip8-sv/G0.md`
+  → no output, exit 0: **byte-identical**. *Measured.*
+- `git rev-parse HEAD` on the fresh clone →
+  `0a60b2ae001cb62ec017d6f949dda3ef4d388321`. *Measured.*
+- Section heads in `docs/LESSONS.md` at this head: A11, B15, C18, D15,
+  E10, F08. Recorded now because §5.2 clause 6 makes id allocation
+  head-dependent and re-derived per attempt. *Measured.*
+
+### Outcome
+Step 2 complete: the packet is staged on `fed/chip8-sv/G0/1`, unmodified,
+with nothing yet touching `docs/LESSONS.md`. Next: §5.1 step 3, a fresh
+reviewer agent running §8's four screens, whose report lands beside the
+packet as `G0.screen.md`.
+
+### Open-questions
+- The `fed/**` ruleset (this repository's Stage 0 step 2) remains
+  unconfigured; the staging namespace is unprotected for this landing.
+- Whether `LC-01` survives screen 4 against section D is the reviewer's
+  call, not recorded here.
+
+### Files-in-this-commit
+- docs/federation/landed/chip8-sv/G0.md
